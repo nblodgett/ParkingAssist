@@ -1,0 +1,3 @@
+Check timeout function doesn't seem to work at longer intervals
+Check implementation of millis() first
+
