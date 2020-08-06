@@ -1,9 +1,9 @@
 #include <EEPROM.h>
 
 // Initialize variables
-unsigned long  currentTime = 0;
-unsigned long  lastTime = 0; // Used for turning off leds when timer is up
-int timer = 60000; // milliseconds until lights will turn off
+unsigned long currentTime = 0;
+unsigned long lastTime = 0; // Used for turning off leds when timer is up
+unsigned long timer = 60000; // milliseconds until lights will turn off
 int triggerPin = 5; // Ultrasonic Trigger Output
 int echoPin = 9; // Ultrasonic Trigger Return Input
 long duration; // Ultrasonic measurement
@@ -41,7 +41,7 @@ void loop() {
   checkButtonPress(maxDistance);
   updateStoplight(); //Figure out the LED pin state, then write to the LED pins
   Serial.print("The distance is: ");
-  Serial.println(currentDistance); 
+  Serial.println(currentDistance);
   delay(1000);
 }
 
@@ -100,7 +100,8 @@ void updateStoplight() {
     Serial.println("Distance changed, timer reset");
   }
   lastDistance = currentDistance;
-  //Serial.println((currentTime - lastTime) / 1000);
+  Serial.println(currentTime - lastTime);
+  Serial.println(timer);
   // Turn off lights if not registering a change
   if (currentTime - lastTime > timer) {
     writeLeds(0, LOW, LOW, LOW);
