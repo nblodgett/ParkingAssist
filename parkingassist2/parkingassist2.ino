@@ -1,17 +1,17 @@
 #include <EEPROM.h>
 
 // Initialize variables
-unsigned long  currentTime = 0;
-unsigned long  lastTime = 0; // Used for turning off leds when timer is up
-int timer = 60000; // milliseconds until lights will turn off
-int triggerPin = 7; // Ultrasonic Trigger Output
-int echoPin = 8; // Ultrasonic Trigger Return Input
+unsigned long currentTime = 0;
+unsigned long lastTime = 0; // Used for turning off leds when timer is up
+unsigned long timer = 60000; // milliseconds until lights will turn off
+int triggerPin = 5; // Ultrasonic Trigger Output
+int echoPin = 9; // Ultrasonic Trigger Return Input
 long duration; // Ultrasonic measurement
 int redLight = 11; // Red light pin
-int yellowLight = 10; // Yellow light pin
-int greenLight = 9; // Green light pin
-int minButtonPin = 6; // Pin input for push button to trigger minimum stop distance (to clear front of garage)
-int maxButtonPin = 4; // Pin input for push button to trigger maximum stop distance (to clear garage door)
+int yellowLight = 7; // Yellow light pin
+int greenLight = 3; // Green light pin
+int minButtonPin = 12; // Pin input for push button to trigger minimum stop distance (to clear front of garage)
+int maxButtonPin = 2; // Pin input for push button to trigger maximum stop distance (to clear garage door)
 int currentDistance = 0; // Distance in inches left until collision
 int lastDistance = 0; // Distance last measured
 int minDistance[3] = {minButtonPin, 0, 0}; // Pin, Inches, EEPROM storage address
@@ -100,7 +100,8 @@ void updateStoplight() {
     Serial.println("Distance changed, timer reset");
   }
   lastDistance = currentDistance;
-  //Serial.println((currentTime - lastTime) / 1000);
+  Serial.println(currentTime - lastTime);
+  Serial.println(timer);
   // Turn off lights if not registering a change
   if (currentTime - lastTime > timer) {
     writeLeds(0, LOW, LOW, LOW);
