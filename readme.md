@@ -1,1 +1,1 @@
-![Photo of Arduino Parking Assistant](https://imgur.com/a/dCcDzkg)
+<img src="images/prototype.jpg" width="300" height="400">
